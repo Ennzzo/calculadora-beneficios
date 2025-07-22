@@ -1,42 +1,31 @@
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap");
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  --verde: #ffffff;
+  --verde-claro: rgb(34 197 94);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
+  font-family: "Poppins", sans-serif;
   margin: 0;
+  padding: 0;
+  background-color: #001039;
+  color: #333;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.header-calc {
+  text-align: center;
+  padding: 2rem 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.title {
+  font-size: 2rem;
+  color: var(--verde);
+}
+
+.main-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
 }
