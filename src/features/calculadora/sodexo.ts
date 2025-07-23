@@ -33,14 +33,11 @@ export function TotalSodexo(x: number, y: number): string | number {
   return 0;
 }
 
-export function TotalSodexoAnual(x: number, y: number): string | number {
-  if (y !== 0) {
-    const result = ((x * y - x * 3.5) * 12) / 100;
-    const formatado = result.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-    return formatado;
-  }
-  return 0;
+export function TotalSodexoAnual(x: number, y: number): string {
+  const result = y !== 0 ? ((x * y - x * 3.5) * 12) / 100 : 0;
+  return result.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 }
+

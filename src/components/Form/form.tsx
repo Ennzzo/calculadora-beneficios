@@ -4,7 +4,6 @@ import { useState } from "react";
 import styles from "./form.module.css";
 import { TaxaAleloA } from "../../features/calculadora/alelo";
 import { TaxaBenM } from "../../features/calculadora/ben";
-import { useEffect } from "react";
 import { TotalSodexoAnual } from "../../features/calculadora/sodexo";
 import { AdesaoTicket } from "../../features/calculadora/ticket";
 import {
@@ -24,6 +23,12 @@ export default function Form() {
   const [taxa3, setTaxa3] = useState("");
   const [taxa4, setTaxa4] = useState("");
 
+  // Novos estados para resultados
+  const [resultadoAlelo, setResultadoAlelo] = useState<string | null>(null);
+  const [resultadoBen, setResultadoBen] = useState<string | null>(null);
+  const [resultadoSodexo, setResultadoSodexo] = useState<string | null>(null);
+  const [resultadoTicket, setResultadoTicket] = useState<string | null>(null);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -37,16 +42,15 @@ export default function Form() {
     const t3 = extrairNumero(taxa3);
     const t4 = extrairNumero(taxa4);
 
-    const resultadoAlelo = TaxaAleloA(a);
-    const resultadoBen = TaxaBenM(d, t4);
-    const resultadoSodexo = TotalSodexoAnual(b, t2);
-    const resultadoTicketAdesao = AdesaoTicket();
+    const resultadoA= TaxaAleloA(a, t2);
+    const resultadoB = TaxaBenM(d, t4);
+    const resultadoS = TotalSodexoAnual(b, t2);
+    const resultadoT = AdesaoTicket();
 
-    console.log("Alelo:", resultadoAlelo);
-    console.log("Ben:", resultadoBen);
-    console.log("Sodexo:", resultadoSodexo);
-    console.log("Ticket Adesão:", resultadoTicketAdesao);
-    console.log("Taxas:", t1, t2, t3, t4);
+    setResultadoAlelo(resultadoA); // Já é string
+    setResultadoBen(resultadoB);   // Já é string
+    setResultadoSodexo(formatarMoeda(resultadoS)); // Converte number -> "R$ 1.234,00"
+    setResultadoTicket(formatarMoeda(resultadoT)); // Converte number -> "R$ 1.234,00"
   };
 
   return (
@@ -144,6 +148,22 @@ export default function Form() {
       </div>
 
       <button type="submit" className={styles.button}>CALCULAR</button>
+
+      {/* RESULTADOS */}
+      <div className={styles.resultados}>
+        {resultadoAlelo && (
+          <p><strong>Alelo:</strong> {resultadoAlelo}</p>
+        )}
+        {resultadoBen && (
+          <p><strong>Ben:</strong> {resultadoBen}</p>
+        )}
+        {resultadoSodexo && (
+          <p><strong>Pluxee:</strong> {resultadoSodexo}</p>
+        )}
+        {resultadoTicket && (
+          <p><strong>Ticket:</strong> {resultadoTicket}</p>
+        )}
+      </div>
     </form>
   );
 }

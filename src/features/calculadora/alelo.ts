@@ -1,4 +1,4 @@
-export function TaxaAleloA(x: number): string {
+export function TaxaAleloA(x: number, y: number): string {
   const result = x * 3.5 / 100;
   return result.toLocaleString("pt-BR", {
     style: "currency",
