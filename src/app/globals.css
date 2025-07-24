@@ -25,7 +25,14 @@ body {
 }
 
 .main-form {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1rem;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    margin: 10px auto 0px;
+    padding: 30px;
+    border-radius: 10px;
 }

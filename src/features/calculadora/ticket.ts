@@ -1,27 +1,25 @@
+// ticket.ts
 export function TaxaTicketA(x: number): string {
-  const result = x * 3.5;
-  const resultB = result / 100;
-  return resultB.toLocaleString("pt-BR", {
+  const result = x * 3.5 / 100;
+  return result.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
 }
 
-export function TaxaTicketM(x: number, y: number): string | number {
+export function TaxaTicketM(x: number, y: number): string {
   if (y !== 0) {
-    const result = x * y;
-    const resultA = result / 100;
-    return resultA.toLocaleString("pt-BR", {
+    const result = x * (y / 100);
+    return result.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     });
   }
-  return 0;
+  return "R$ 0,00";
 }
 
 export function TaxaTFBTicket(): string {
-  const resultA = 8.37;
-  return resultA.toLocaleString("pt-BR", {
+  return (8.37).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
@@ -32,32 +30,30 @@ export function AnuidadeTicket(): string {
 }
 
 export function AdesaoTicket(): string {
-  const resultA = 403.0;
-  const formatado = resultA.toLocaleString("pt-BR", {
+  return (403.0).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
-  return formatado;
 }
 
-export function TotalTicket(x: number, y: number): string | number {
+export function TotalTicket(x: number, y: number): string {
   if (y !== 0) {
-    const result = (x * y - x * 3.5) / 100;
+    const result = x * (y / 100);
     return result.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     });
   }
-  return 0;
+  return "R$ 0,00";
 }
 
-export function TotalTicketAnual(x: number, y: number): string | number {
+export function TotalTicketAnual(x: number, y: number): string {
   if (y !== 0) {
-    const result = ((x * y - x * 3.5) * 12) / 100;
+    const result = x * (y / 100) * 12;
     return result.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     });
   }
-  return 0;
+  return "R$ 0,00";
 }

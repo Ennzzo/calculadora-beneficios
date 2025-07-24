@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import styles from "./form.module.css";
-import { TaxaAleloA } from "../../features/calculadora/alelo";
-import { TaxaBenM } from "../../features/calculadora/ben";
-import { TotalSodexoAnual } from "../../features/calculadora/sodexo";
-import { AdesaoTicket } from "../../features/calculadora/ticket";
+import { TotalAlelo } from "../../features/calculadora/alelo";
+import { TotalBen } from "../../features/calculadora/ben";
+import { TotalSodexo } from "../../features/calculadora/sodexo";
+import { TotalTicket } from "../../features/calculadora/ticket";
 import {
   formatarMoeda,
   formatarTaxa,
@@ -23,7 +23,7 @@ export default function Form() {
   const [taxa3, setTaxa3] = useState("");
   const [taxa4, setTaxa4] = useState("");
 
-  // Novos estados para resultados
+
   const [resultadoAlelo, setResultadoAlelo] = useState<string | null>(null);
   const [resultadoBen, setResultadoBen] = useState<string | null>(null);
   const [resultadoSodexo, setResultadoSodexo] = useState<string | null>(null);
@@ -42,15 +42,15 @@ export default function Form() {
     const t3 = extrairNumero(taxa3);
     const t4 = extrairNumero(taxa4);
 
-    const resultadoA= TaxaAleloA(a, t2);
-    const resultadoB = TaxaBenM(d, t4);
-    const resultadoS = TotalSodexoAnual(b, t2);
-    const resultadoT = AdesaoTicket();
+    const resultadoA = TotalAlelo(a, t2); // taxa2 = Alelo
+    const resultadoB = TotalBen(d, t4);   // taxa4 = Ben
+    const resultadoS = TotalSodexo(b, t1); // taxa1 = Pluxee
+    const resultadoT = TotalTicket(c, t3); // taxa3 = Ticket
 
-    setResultadoAlelo(resultadoA); // Já é string
-    setResultadoBen(resultadoB);   // Já é string
-    setResultadoSodexo(formatarMoeda(resultadoS)); // Converte number -> "R$ 1.234,00"
-    setResultadoTicket(formatarMoeda(resultadoT)); // Converte number -> "R$ 1.234,00"
+    setResultadoAlelo(resultadoA); 
+    setResultadoBen(resultadoB);   
+    setResultadoSodexo(formatarMoeda(resultadoS)); 
+    setResultadoTicket(formatarMoeda(resultadoT));
   };
 
   return (
@@ -151,6 +151,7 @@ export default function Form() {
 
       {/* RESULTADOS */}
       <div className={styles.resultados}>
+        <p><strong>Economia Aproximada Total:</strong></p>
         {resultadoAlelo && (
           <p><strong>Alelo:</strong> {resultadoAlelo}</p>
         )}

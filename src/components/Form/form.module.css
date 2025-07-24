@@ -1,22 +1,18 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.group {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.group h4 {
-  font-size: 1.1rem;
+  padding: 2rem;
+  background-color: #4d5979;
   color: white;
-  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.formContainer {
+  width: 100%;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+  margin-top: 2rem;
 }
 
 .grid {
@@ -32,8 +28,8 @@
 
 .field label {
   margin-bottom: 0.25rem;
-  font-size: 0.9rem;
-  color: #f1f1f1;
+  font-size: 1.1rem;
+  color: #06175a;
 }
 
 .field input {
@@ -42,6 +38,8 @@
   border: none;
   background: #ffffff;
   font-size: 1rem;
+  outline: none;
+  border: 2.1px, solid #2a96a8;
 }
 
 .button {
@@ -59,15 +57,6 @@
 
 .button:hover {
   background-color: #0043ad;
-}
-
-.formContainer {
-  background: rgba(255, 255, 255, 0.06); /* fundo levemente mais claro */
-  border-radius: 16px;
-  padding: 2rem;
-  margin: 2rem auto;
-  max-width: 960px;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
 }
 
 .resultados {

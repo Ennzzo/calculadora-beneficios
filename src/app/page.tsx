@@ -1,6 +1,6 @@
 import Form from "@/components/Form/form";
 import Image from "next/image";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/Footer/footer";  
 
 export default function Home() {
   return (

@@ -1,3 +1,4 @@
+// alelo.ts
 export function TaxaAleloA(x: number, y: number): string {
   const result = x * 3.5 / 100;
   return result.toLocaleString("pt-BR", {
@@ -8,36 +9,31 @@ export function TaxaAleloA(x: number, y: number): string {
 
 export function TaxaAleloM(x: number, y: number): string {
   if (y !== 0) {
-    const result = x * y;
-    const resultA = result / 100;
-    const formatado = resultA.toLocaleString("pt-BR", {
+    const result = x * (y / 100);
+    return result.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
     });
-    return formatado;
   }
   return "R$ 0,00";
 }
 
 export function AleloTFB(): string {
-  const resultA = 0.9;
-  return resultA.toLocaleString("pt-BR", {
+  return (0.9).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
 }
 
 export function AleloAnuidade(): string {
-  const resultA = 190.0;
-  return resultA.toLocaleString("pt-BR", {
+  return (190.0).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
 }
 
 export function AleloAdesao(): string {
-  const resultA = 120.0;
-  return resultA.toLocaleString("pt-BR", {
+  return (120.0).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
@@ -45,7 +41,7 @@ export function AleloAdesao(): string {
 
 export function TotalAlelo(x: number, y: number): string {
   if (y !== 0) {
-    const result = (x * y - x * 3.5) / 100;
+    const result = x * (y / 100);
     return result.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
@@ -56,7 +52,7 @@ export function TotalAlelo(x: number, y: number): string {
 
 export function TotalAleloAnual(x: number, y: number): string {
   if (y !== 0) {
-    const result = ((x * y - x * 3.5) * 12) / 100;
+    const result = x * (y / 100) * 12;
     return result.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",

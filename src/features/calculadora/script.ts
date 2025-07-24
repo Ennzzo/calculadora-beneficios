@@ -87,11 +87,3 @@ export function TotalResultAnual(
     currency: "BRL",
   });
 }
-
-
-
-
-
-
-
-

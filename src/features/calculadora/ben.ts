@@ -1,9 +1,6 @@
-//BEN.JS
-
-// utils/benCalculadora.ts
-
+// ben.ts
 export function TaxaBenA(x: number): string {
-  const result = (x * 3.9) / 100;
+  const result = x * 3.9 / 100;
   return result.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -12,7 +9,7 @@ export function TaxaBenA(x: number): string {
 
 export function TaxaBenM(x: number, y: number): string {
   if (y !== 0) {
-    const result = (x * y) / 100;
+    const result = x * (y / 100);
     return result.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
@@ -22,16 +19,14 @@ export function TaxaBenM(x: number, y: number): string {
 }
 
 export function BenTFB(): string {
-  const resultA = 1.1;
-  return resultA.toLocaleString("pt-BR", {
+  return (1.1).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
 }
 
 export function BenAnuidade(): string {
-  const resultA = 120.0;
-  return resultA.toLocaleString("pt-BR", {
+  return (120.0).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
@@ -43,7 +38,7 @@ export function BenAdesao(): string {
 
 export function TotalBen(x: number, y: number): string {
   if (y !== 0) {
-    const result = (x * y - x * 3.9) / 100;
+    const result = x * (y / 100);
     return result.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
@@ -54,7 +49,7 @@ export function TotalBen(x: number, y: number): string {
 
 export function TotalBenAnual(x: number, y: number): string {
   if (y !== 0) {
-    const result = ((x * y - x * 3.9) * 12) / 100;
+    const result = x * (y / 100) * 12;
     return result.toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
