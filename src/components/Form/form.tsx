@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./form.module.css";
 import { TotalResultAnual } from "../../features/calculadora/script";
+import { TotalResultMensal } from "../../features/calculadora/script";
 import {
   formatarMoeda,
   formatarTaxa,
@@ -21,6 +22,7 @@ export default function Form() {
   const [taxa4, setTaxa4] = useState("");
 
   const [resultadoTotal, setResultadoTotal] = useState<string | null>(null);
+  const [resultadoMensal, setResultadoMensal] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,9 +37,29 @@ export default function Form() {
     const t3 = extrairNumero(taxa3);  // Ticket
     const t4 = extrairNumero(taxa4);  // Ben
 
-    const resultadoTotalFinal = TotalResultAnual(t1, a, d, c, b); // ordem: mercado, alelo, ben, ticket, sodexo
+    console.log({
+      mercado: t1,
+      alelo: a,
+      ben: d,
+      ticket: c,
+      sodexo: b,
+    });
+
+    const resultadoTotalFinal = TotalResultAnual(
+      t2, // taxa Alelo
+      t4, // taxa Ben
+      t3, // taxa Ticket
+      t1, // taxa Pluxee
+      a,  // valor Alelo
+      d,  // valor Ben
+      c,  // valor Ticket
+      b   // valor Pluxee
+    );
+
+    const resultadoMensalFinal = TotalResultMensal(t2, t4, t3, t1, a, d, c, b);
 
     setResultadoTotal(resultadoTotalFinal);
+    setResultadoMensal(resultadoMensalFinal);
   };
 
   return (
@@ -136,12 +158,14 @@ export default function Form() {
 
       <button type="submit" className={styles.button}>CALCULAR</button>
 
-      <div className={styles.resultados}>
-        <p><strong>Economia Aproximada Total:</strong></p>
-        {resultadoTotal && (
+      {(resultadoMensal || resultadoTotal) && (
+        <div className={styles.resultados}>
+          <p><strong>Economia Aproximada Mensal:</strong></p>
+          <p>{resultadoMensal}</p>
+          <p><strong>Economia Aproximada Anual:</strong></p>
           <p>{resultadoTotal}</p>
-        )}
-      </div>
+        </div>
+      )}
     </form>
   );
 }
