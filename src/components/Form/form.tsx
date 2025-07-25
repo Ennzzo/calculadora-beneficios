@@ -2,10 +2,7 @@
 
 import { useState } from "react";
 import styles from "./form.module.css";
-import { TotalAlelo } from "../../features/calculadora/alelo";
-import { TotalBen } from "../../features/calculadora/ben";
-import { TotalSodexo } from "../../features/calculadora/sodexo";
-import { TotalTicket } from "../../features/calculadora/ticket";
+import { TotalResultAnual } from "../../features/calculadora/script";
 import {
   formatarMoeda,
   formatarTaxa,
@@ -23,34 +20,24 @@ export default function Form() {
   const [taxa3, setTaxa3] = useState("");
   const [taxa4, setTaxa4] = useState("");
 
-
-  const [resultadoAlelo, setResultadoAlelo] = useState<string | null>(null);
-  const [resultadoBen, setResultadoBen] = useState<string | null>(null);
-  const [resultadoSodexo, setResultadoSodexo] = useState<string | null>(null);
-  const [resultadoTicket, setResultadoTicket] = useState<string | null>(null);
+  const [resultadoTotal, setResultadoTotal] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const a = extrairNumero(alelo);
-    const b = extrairNumero(pluxee);
-    const c = extrairNumero(ticket);
-    const d = extrairNumero(ben);
+    const a = extrairNumero(alelo);   // Alelo
+    const b = extrairNumero(pluxee);  // Pluxee
+    const c = extrairNumero(ticket);  // Ticket
+    const d = extrairNumero(ben);     // Ben
 
-    const t1 = extrairNumero(taxa1);
-    const t2 = extrairNumero(taxa2);
-    const t3 = extrairNumero(taxa3);
-    const t4 = extrairNumero(taxa4);
+    const t1 = extrairNumero(taxa1);  // Pluxee
+    const t2 = extrairNumero(taxa2);  // Alelo
+    const t3 = extrairNumero(taxa3);  // Ticket
+    const t4 = extrairNumero(taxa4);  // Ben
 
-    const resultadoA = TotalAlelo(a, t2); // taxa2 = Alelo
-    const resultadoB = TotalBen(d, t4);   // taxa4 = Ben
-    const resultadoS = TotalSodexo(b, t1); // taxa1 = Pluxee
-    const resultadoT = TotalTicket(c, t3); // taxa3 = Ticket
+    const resultadoTotalFinal = TotalResultAnual(t1, a, d, c, b); // ordem: mercado, alelo, ben, ticket, sodexo
 
-    setResultadoAlelo(resultadoA); 
-    setResultadoBen(resultadoB);   
-    setResultadoSodexo(formatarMoeda(resultadoS)); 
-    setResultadoTicket(formatarMoeda(resultadoT));
+    setResultadoTotal(resultadoTotalFinal);
   };
 
   return (
@@ -149,20 +136,10 @@ export default function Form() {
 
       <button type="submit" className={styles.button}>CALCULAR</button>
 
-      {/* RESULTADOS */}
       <div className={styles.resultados}>
         <p><strong>Economia Aproximada Total:</strong></p>
-        {resultadoAlelo && (
-          <p><strong>Alelo:</strong> {resultadoAlelo}</p>
-        )}
-        {resultadoBen && (
-          <p><strong>Ben:</strong> {resultadoBen}</p>
-        )}
-        {resultadoSodexo && (
-          <p><strong>Pluxee:</strong> {resultadoSodexo}</p>
-        )}
-        {resultadoTicket && (
-          <p><strong>Ticket:</strong> {resultadoTicket}</p>
+        {resultadoTotal && (
+          <p>{resultadoTotal}</p>
         )}
       </div>
     </form>
